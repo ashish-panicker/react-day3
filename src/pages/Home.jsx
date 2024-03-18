@@ -1,10 +1,7 @@
-
 const Home = () => {
   return (
-    <div className='article'>
-        <div className="article-title">
-          This is the home page
-        </div>
+    <div className="article">
+      <h1>Home</h1>
     </div>
   )
 }
