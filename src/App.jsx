@@ -1,10 +1,10 @@
-import Joke from "./Joke"
+import Character from "./Character"
 
 function App() {
 
   return (
     <div className="container">
-     <Joke />
+     <Character />
     </div>
   )
 }

@@ -6,14 +6,19 @@ const Joke = () => {
   // a state variable joke with a empty string value
   const [joke, setJoke] = useState('')
   const [next, setNext] = useState(1)
+  const [loading, setLoading] = useState(false)
 
   // generating a random number between 1 and 100
   //   const randomNumber = Math.floor(Math.random() * 100)
 
   useEffect(() => {
+    setLoading(true)
     fetch('https://api.chucknorris.io/jokes/random')
       .then((response) => response.json())
-      .then((jsonData) => setJoke(jsonData.value))
+      .then((jsonData) => {
+        setLoading(false)
+        setJoke(jsonData.value)
+      })
   }, [next])
 
   const nextButtonClick = () => {
@@ -33,10 +38,13 @@ const Joke = () => {
     <div className="article">
       <div className="article-title">
         <h2>Joke of the day</h2>
-        <button className="button" onClick={nextButtonClick}>Next Joke</button>
+        <button className="button" onClick={nextButtonClick}>
+          Next Joke
+        </button>
       </div>
       <div>
-        <p>{joke}</p>
+        {!loading && <p>{joke}</p>}
+        {loading && <p>Loading...</p>}
       </div>
     </div>
   )
